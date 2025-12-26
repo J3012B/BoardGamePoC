@@ -49,12 +49,19 @@ export class InputManager {
     // First, check for piece clicks
     const pieceIntersects = this.raycaster.intersectObjects(
       this.renderer.piecesGroup.children,
-      false
+      true // Recursive to check child meshes
     );
 
     if (pieceIntersects.length > 0) {
       const hitObject = pieceIntersects[0].object;
-      const piece = hitObject.userData.piece as Piece | undefined;
+      
+      // Traverse up to find piece data (might be on parent)
+      let piece: Piece | undefined;
+      let current: THREE.Object3D | null = hitObject;
+      while (current && !piece) {
+        piece = current.userData.piece as Piece | undefined;
+        current = current.parent;
+      }
 
       if (piece) {
         // If clicking own piece, select it
@@ -73,12 +80,19 @@ export class InputManager {
     // Then check for tile clicks (for moving)
     const tileIntersects = this.raycaster.intersectObjects(
       this.renderer.boardGroup.children,
-      false
+      true // Recursive for consistency
     );
 
     if (tileIntersects.length > 0) {
       const hitObject = tileIntersects[0].object;
-      const tile = hitObject.userData.tile as Tile | undefined;
+      
+      // Traverse up to find tile data (might be on parent)
+      let tile: Tile | undefined;
+      let current: THREE.Object3D | null = hitObject;
+      while (current && !tile) {
+        tile = current.userData.tile as Tile | undefined;
+        current = current.parent;
+      }
 
       if (tile && state.selectedPieceId) {
         // Move selected piece to clicked tile

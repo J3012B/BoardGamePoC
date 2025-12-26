@@ -1,15 +1,16 @@
-# 3D Board Game Boilerplate
+# 3D Chess Game
 
-A minimal, extensible boilerplate for browser-based 3D board games using TypeScript, Vite, and Three.js.
+A browser-based 3D chess game built with TypeScript, Vite, and Three.js. Features standard chess rules with all piece types and move validation.
 
 ## Features
 
-- ✅ **Pure game state** - Game logic is independent of rendering
-- ✅ **Deterministic updates** - State changes only via actions
-- ✅ **Renderer as view** - Three.js consumes state, never mutates it
-- ✅ **Backend-ready** - State + actions are JSON-serializable for network transfer
-- ✅ **No heavy frameworks** - Just TypeScript, Vite, and Three.js
-- ✅ **Intuitive controls** - Separated mouse buttons for game vs camera controls
+- ✅ **Full chess implementation** - All 6 piece types with proper movement rules
+- ✅ **Valid move highlighting** - Green tiles show where selected piece can move
+- ✅ **Clean architecture** - Game logic is independent of rendering
+- ✅ **3D visualization** - Different geometries for each chess piece type
+- ✅ **Smooth camera controls** - Right-drag to rotate, middle-drag to pan, scroll to zoom
+- ✅ **Backend-ready** - State + actions are JSON-serializable for multiplayer
+- ✅ **Pure TypeScript** - No heavy frameworks, just Vite and Three.js
 
 ## Quick Start
 
@@ -17,12 +18,39 @@ A minimal, extensible boilerplate for browser-based 3D board games using TypeScr
 # Install dependencies
 npm install
 
-# Start development server
+# Start development server (opens at http://localhost:3000 or 3001)
 npm run dev
 
 # Build for production
 npm run build
 ```
+
+## How to Play
+
+1. **Select a piece** - Left-click on your piece (White moves first)
+2. **View valid moves** - Green tiles show where the piece can move
+3. **Make a move** - Click a green tile to move your piece there
+4. **Capture pieces** - Move to a tile with an opponent's piece to capture it
+5. **Switch turns** - Turns automatically alternate after each move
+
+### Controls
+
+- **Left-click** - Select pieces and make moves
+- **Right-drag** - Rotate camera around the board
+- **Middle-drag** - Pan the camera
+- **Scroll** - Zoom in/out
+- **ESC** - Deselect current piece
+
+## Chess Pieces Implemented
+
+All standard chess pieces with proper movement rules:
+
+- **♙ Pawn** - Moves forward one square (two on first move), captures diagonally
+- **♜ Rook** - Moves horizontally or vertically any number of squares
+- **♞ Knight** - Moves in an L-shape (2+1 squares)
+- **♝ Bishop** - Moves diagonally any number of squares
+- **♛ Queen** - Combines rook and bishop movement
+- **♚ King** - Moves one square in any direction
 
 ## Architecture Overview
 
@@ -30,15 +58,16 @@ npm run build
 /src
 ├── /core               # Pure game logic (no rendering dependencies)
 │   ├── Game.ts         # Main game loop and state management
-│   ├── GameState.ts    # State types and initial state
+│   ├── GameState.ts    # Chess state types and initial board setup
 │   ├── Actions.ts      # Action type definitions
-│   └── Reducer.ts      # Pure reducer function
+│   ├── Reducer.ts      # Pure reducer with chess logic
+│   └── ChessRules.ts   # Movement rules for each piece type
 ├── /rendering          # Three.js rendering layer
 │   ├── Renderer.ts     # Scene, camera, lights setup
-│   ├── BoardView.ts    # Board mesh creation and updates
-│   └── PieceView.ts    # Piece mesh creation and updates
+│   ├── BoardView.ts    # Chess board with valid move highlighting
+│   └── PieceView.ts    # 3D chess pieces (different geometry per type)
 ├── /input              # User input handling
-│   └── InputManager.ts # Pointer events and raycasting
+│   └── InputManager.ts # Piece selection and move input via raycasting
 └── main.ts             # Application entry point
 ```
 

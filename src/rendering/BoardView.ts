@@ -16,6 +16,7 @@ export class BoardView {
   private lightTileMaterial: THREE.MeshStandardMaterial;
   private darkTileMaterial: THREE.MeshStandardMaterial;
   private highlightedMaterial: THREE.MeshStandardMaterial;
+  private validMoveMaterial: THREE.MeshStandardMaterial;
   private tileGeometry: THREE.BoxGeometry;
   private borderMaterial: THREE.MeshStandardMaterial;
 
@@ -24,13 +25,13 @@ export class BoardView {
 
     // Create materials with a chess-like aesthetic
     this.lightTileMaterial = new THREE.MeshStandardMaterial({
-      color: 0xe8d5b7,
+      color: 0xf0e6d2,
       roughness: 0.8,
       metalness: 0.1,
     });
 
     this.darkTileMaterial = new THREE.MeshStandardMaterial({
-      color: 0x8b6914,
+      color: 0xb08968,
       roughness: 0.8,
       metalness: 0.1,
     });
@@ -43,8 +44,16 @@ export class BoardView {
       emissiveIntensity: 0.3,
     });
 
+    this.validMoveMaterial = new THREE.MeshStandardMaterial({
+      color: 0x90ee90,
+      roughness: 0.6,
+      metalness: 0.2,
+      emissive: 0x32cd32,
+      emissiveIntensity: 0.25,
+    });
+
     this.borderMaterial = new THREE.MeshStandardMaterial({
-      color: 0x5c4033,
+      color: 0x3d2817,
       roughness: 0.9,
       metalness: 0.05,
     });
@@ -127,6 +136,8 @@ export class BoardView {
 
       if (tile.type === 'highlighted') {
         mesh.material = this.highlightedMaterial;
+      } else if (tile.type === 'valid-move') {
+        mesh.material = this.validMoveMaterial;
       } else {
         const { x, y } = tile.position;
         const isLight = (x + y) % 2 === 0;
@@ -150,6 +161,7 @@ export class BoardView {
     this.lightTileMaterial.dispose();
     this.darkTileMaterial.dispose();
     this.highlightedMaterial.dispose();
+    this.validMoveMaterial.dispose();
     this.borderMaterial.dispose();
 
     for (const mesh of this.tileMeshes.values()) {

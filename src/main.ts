@@ -55,12 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
  * Setup UI button handlers.
  */
 function setupUI(game: Game): void {
-  const endTurnBtn = document.getElementById('end-turn-btn');
   const resetBtn = document.getElementById('reset-btn');
-
-  endTurnBtn?.addEventListener('click', () => {
-    game.dispatch(Actions.endTurn());
-  });
 
   resetBtn?.addEventListener('click', () => {
     game.dispatch(Actions.resetGame());
@@ -75,7 +70,8 @@ function updateUI(state: { currentPlayer: number; turnNumber: number }): void {
   const turnDisplay = document.getElementById('turn-number');
 
   if (playerDisplay) {
-    playerDisplay.textContent = `Player ${state.currentPlayer}`;
+    const playerName = state.currentPlayer === 1 ? 'White' : 'Black';
+    playerDisplay.textContent = playerName;
     playerDisplay.className = `player-${state.currentPlayer}`;
   }
 

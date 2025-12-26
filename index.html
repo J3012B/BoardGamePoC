@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3D Board Game Boilerplate</title>
+    <title>3D Chess Game</title>
   </head>
   <body>
     <div id="game-container">
@@ -11,7 +11,7 @@
       <div id="ui-overlay">
         <!-- Header Panel -->
         <div class="header-panel">
-          <h1 class="game-title">Board Game</h1>
+          <h1 class="game-title">Chess</h1>
           <div class="divider"></div>
           <div class="game-info">
             <div class="info-item">
@@ -29,28 +29,27 @@
         <div class="legend-panel">
           <div class="legend-item">
             <div class="legend-color player-1"></div>
-            <span>Player 1</span>
+            <span>White</span>
           </div>
           <div class="legend-item">
             <div class="legend-color player-2"></div>
-            <span>Player 2</span>
+            <span>Black</span>
           </div>
         </div>
 
         <!-- Controls Panel -->
         <div class="controls-panel">
-          <button id="end-turn-btn" class="btn btn-primary">End Turn</button>
-          <button id="reset-btn" class="btn btn-secondary">Reset Game</button>
+          <button id="reset-btn" class="btn btn-primary">New Game</button>
         </div>
 
         <!-- Instructions -->
         <div class="instructions-panel">
           <h2 class="instructions-title">How to Play</h2>
           <ul class="instructions-list">
-            <li>Click your piece to select it</li>
-            <li>Click a tile to move</li>
+            <li>Click piece to see valid moves</li>
+            <li>Click green tile to move</li>
             <li>Press ESC to deselect</li>
-            <li>End turn when ready</li>
+            <li>Standard chess rules apply</li>
           </ul>
           <h2 class="instructions-title" style="margin-top: 16px;">Camera Controls</h2>
           <ul class="instructions-list">

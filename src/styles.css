@@ -17,8 +17,8 @@
   --color-surface-light: #25253d;
   --color-text: #e8e8f0;
   --color-text-muted: #8888a0;
-  --color-player-1: #ff6b6b;
-  --color-player-2: #4ecdc4;
+  --color-player-1: #f0e6d2;
+  --color-player-2: #4a3728;
   --color-accent: #ffd93d;
   --font-display: 'Syne', system-ui, sans-serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
@@ -269,11 +269,13 @@ body {
 
 .legend-color.player-1 {
   background: var(--color-player-1);
-  box-shadow: 0 0 12px rgba(255, 107, 107, 0.4);
+  border: 2px solid #ccc;
+  box-shadow: 0 0 12px rgba(240, 230, 210, 0.6);
 }
 
 .legend-color.player-2 {
   background: var(--color-player-2);
-  box-shadow: 0 0 12px rgba(78, 205, 196, 0.4);
+  border: 2px solid #222;
+  box-shadow: 0 0 12px rgba(74, 55, 40, 0.6);
 }
 
