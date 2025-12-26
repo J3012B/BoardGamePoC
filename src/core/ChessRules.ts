@@ -3,7 +3,7 @@
  * Chess movement rules and validation logic.
  */
 
-import type { GameState, Piece, Position, PieceType } from './GameState';
+import type { GameState, Piece, Position } from './GameState';
 
 /**
  * Get all valid moves for a piece at the given position.
