@@ -53,6 +53,14 @@ export class Renderer {
     this.controls.maxPolarAngle = Math.PI / 2.2;
     this.controls.minDistance = 5;
     this.controls.maxDistance = 25;
+    
+    // Configure mouse buttons: RIGHT = rotate, MIDDLE = pan, SCROLL = zoom
+    // This leaves LEFT mouse button free for game interactions
+    this.controls.mouseButtons = {
+      LEFT: -1, // Disable left click for orbit controls
+      MIDDLE: THREE.MOUSE.DOLLY,
+      RIGHT: THREE.MOUSE.ROTATE,
+    };
 
     // Create groups for organization
     this.boardGroup = new THREE.Group();

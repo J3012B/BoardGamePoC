@@ -28,8 +28,11 @@ export class InputManager {
   }
 
   private setupEventListeners(): void {
+    // Use click event since left mouse is now exclusive to game interactions
     this.domElement.addEventListener('click', this.onClick);
-    this.domElement.addEventListener('contextmenu', this.onRightClick);
+    
+    // Listen for Escape key to deselect
+    window.addEventListener('keydown', this.onKeyDown);
   }
 
   private onClick = (event: MouseEvent): void => {
@@ -82,14 +85,22 @@ export class InputManager {
         this.game.dispatch(
           Actions.movePiece(state.selectedPieceId, tile.position)
         );
+      } else if (tile && !state.selectedPieceId) {
+        // Clicking empty tile when nothing selected does nothing
+        // (Could add tile highlight here if desired)
       }
+    }
+
+    // If clicked on nothing, deselect
+    if (pieceIntersects.length === 0 && tileIntersects.length === 0) {
+      this.game.dispatch(Actions.deselectPiece());
     }
   };
 
-  private onRightClick = (event: MouseEvent): void => {
-    event.preventDefault();
-    // Right-click deselects
-    this.game.dispatch(Actions.deselectPiece());
+  private onKeyDown = (event: KeyboardEvent): void => {
+    if (event.key === 'Escape') {
+      this.game.dispatch(Actions.deselectPiece());
+    }
   };
 
   /**
@@ -97,7 +108,6 @@ export class InputManager {
    */
   dispose(): void {
     this.domElement.removeEventListener('click', this.onClick);
-    this.domElement.removeEventListener('contextmenu', this.onRightClick);
+    window.removeEventListener('keydown', this.onKeyDown);
   }
 }
-

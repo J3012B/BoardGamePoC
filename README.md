@@ -9,6 +9,7 @@ A minimal, extensible boilerplate for browser-based 3D board games using TypeScr
 - ✅ **Renderer as view** - Three.js consumes state, never mutates it
 - ✅ **Backend-ready** - State + actions are JSON-serializable for network transfer
 - ✅ **No heavy frameworks** - Just TypeScript, Vite, and Three.js
+- ✅ **Intuitive controls** - Separated mouse buttons for game vs camera controls
 
 ## Quick Start
 
