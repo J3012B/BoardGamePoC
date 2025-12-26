@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Board Game Boilerplate</title>
+  </head>
+  <body>
+    <div id="game-container">
+      <!-- UI Overlay -->
+      <div id="ui-overlay">
+        <!-- Header Panel -->
+        <div class="header-panel">
+          <h1 class="game-title">Board Game</h1>
+          <div class="divider"></div>
+          <div class="game-info">
+            <div class="info-item">
+              <span class="info-label">Current Turn</span>
+              <span id="current-player" class="info-value player-1">Player 1</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Round</span>
+              <span id="turn-number" class="info-value">Turn 1</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Player Legend -->
+        <div class="legend-panel">
+          <div class="legend-item">
+            <div class="legend-color player-1"></div>
+            <span>Player 1</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color player-2"></div>
+            <span>Player 2</span>
+          </div>
+        </div>
+
+        <!-- Controls Panel -->
+        <div class="controls-panel">
+          <button id="end-turn-btn" class="btn btn-primary">End Turn</button>
+          <button id="reset-btn" class="btn btn-secondary">Reset Game</button>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions-panel">
+          <h2 class="instructions-title">How to Play</h2>
+          <ul class="instructions-list">
+            <li>Click your piece to select it</li>
+            <li>Click a tile to move</li>
+            <li>Right-click to deselect</li>
+            <li>End turn when ready</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+
